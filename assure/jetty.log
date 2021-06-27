@@ -1,0 +1,4 @@
+2021-06-21 23:05:59 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1])
+ at [Source: (PushbackInputStream); line: 5, column: 88]; nested exception is com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1])
+ at [Source: (PushbackInputStream); line: 5, column: 88]
+2021-06-27 10:29:03 WARN  PageNotFound:215 - Request method 'PUT' not supported
