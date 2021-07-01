@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class InventoryDao extends AbstractDao {
@@ -23,7 +24,10 @@ public class InventoryDao extends AbstractDao {
         String select="select p from InventoryPojo p where globalSkuId=:globalSkuId";
         TypedQuery<InventoryPojo> query=getQuery(select,InventoryPojo.class);
         query.setParameter("globalSkuId",globalSkuId);
-        return query.getSingleResult();
+        List<InventoryPojo> inventoryPojoList= query.getResultList();
+        if(inventoryPojoList.size()>0)
+            return inventoryPojoList.get(0);
+        return null;
     }
     @Transactional
     public void update(Long globalSkuId, InventoryPojo inventoryPojo){

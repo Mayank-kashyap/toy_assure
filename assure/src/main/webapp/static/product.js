@@ -1,15 +1,23 @@
+var clientIdList = [];
+
 function getProductUrl(){
 var baseUrl = $("meta[name=baseUrl]").attr("content")
 	return baseUrl + "/api/product";
 }
 
+function getClientUrl(){
+var baseUrl=$("meta[name=baseUrl]").attr("content")
+return baseUrl+"/api/user";
+}
 function updateProduct(event){
 	$('#edit-product-modal').modal('toggle');
-	//Get the ID
 	var id = $("#product-edit-form input[name=id]").val();
+	var mrp=$("#product-edit-form input[name=mrp]").val();
+	if(isNaN(mrp)){
+               	    toastr.error("Mrp field must be a float value: "+ mrp);
+                           		return false;
+               	}
 	var url = getProductUrl() + "/" + id;
-
-	//Set the values to update
 	var $form = $("#product-edit-form");
 	var json = toJson($form);
 
@@ -28,7 +36,10 @@ function updateProduct(event){
             toastr.options.closeButton=true;
             toastr.options.timeOut=0;
 	   },
-	   error: handleAjaxError
+	   error: function(response){
+	   handleAjaxError(response);
+	   }
+
 	});
 }
 
@@ -83,13 +94,33 @@ function displayProduct(data){
 	$("#product-edit-form input[name=id]").val(data.id);
 	$('#edit-product-modal').modal('toggle');
 }
+function validateProductUpload(arr){
+    for(var i in arr){
+        var row=arr[i];
+       	if(isNaN((row.mrp))){
+       	    toastr.error("File cannot be uploaded: Mrp field must be a float value: "+ row.mrp);
+                   		return false;
+       	}
 
+    }
+    return true;
+}
 var fileData = [];
 var errorData = [];
 var processCount = 0;
 
 function processData(){
+    var clientName = $("#product-upload-form input[name=clientId]").val();
+    if(isBlank(clientName))
+    {
+    toastr.error("Client name cannot be empty");
+    return false;
+    }
 	var file = $('#productFile')[0].files[0];
+	if(isBlank(file)){
+	toastr.error("Choose a file to be uploaded");
+	return false;
+	}
 	checkHeader(file,["clientSkuId","name","brandId","mrp","description"],readFileDataCallback);
 }
 
@@ -99,16 +130,16 @@ function readFileDataCallback(results){
 }
 
 function uploadRows(){
-	//Update progress
 	updateUploadDialog();
 	var row = fileData;
-	console.log(row);
+	var check=validateProductUpload(row);
+	if(!check){
+	return false;
+	}
     var json = JSON.stringify(row);
-    console.log(json);
-    var clientId = $("#product-upload-form input[name=clientId]").val();
-    var url = getProductUrl()+"/list/"+clientId;
+    var clientName = $("#product-upload-form input[name=clientId]").val();
+    var url = getProductUrl()+"/list/"+clientName;
 
-    //Make ajax call
     	$.ajax({
     	   url: url,
     	   type: 'POST',
@@ -165,8 +196,33 @@ function updateFileName(){
 function displayUploadData(){
  	resetUploadDialog();
 	$('#upload-product-modal').modal('toggle');
+    var str='';
+    for (var i=0; i < clientIdList.length;++i){
+    str += '<option value="'+clientIdList[i]+'" />'; // Storing options in variable
+    }
+    var my_list=document.getElementById("clientId");
+    my_list.innerHTML = str;
 }
 
+function getClientList(){
+var url=getClientUrl();
+$.ajax({
+	   url: url,
+	   type: 'GET',
+	   success: function(data) {
+	   		addOptions(data);
+	   },
+	   error: handleAjaxError
+	});
+}
+
+function addOptions(data){
+for(var i in data){
+		var e = data[i];
+		if(e.type=="CLIENT")
+		clientIdList.push(e.name);
+		}
+}
 function init(){
 	$('#update-product').click(updateProduct);
 	$('#close-upload').click(getProductList);
@@ -177,3 +233,4 @@ function init(){
 
 $(document).ready(init);
 $(document).ready(getProductList);
+$(document).ready(getClientList);

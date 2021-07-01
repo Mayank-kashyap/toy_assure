@@ -15,8 +15,8 @@ $.ajax({
 	   type: 'POST',
 	   success: function(data) {
 	   		toastr.options.closeButton=false;
-            toastr.options.timeOut=3000;
-            toastr.success("Bin created successfully");
+            toastr.options.timeOut=10000;
+            toastr.success("Bin created successfully with binID: "+data);
             toastr.options.closeButton=true;
             toastr.options.timeOut=0;
 	   },
@@ -60,6 +60,9 @@ var processCount = 0;
 
 function processData(){
 	var file = $('#inventoryFile')[0].files[0];
+	if(isBlank(file))
+    	toastr.error("Choose a file to be uploaded");
+    	else
 	checkHeader(file,["binId","clientSkuId","quantity"],readFileDataCallback);
 }
 
@@ -136,6 +139,7 @@ function init(){
 $('#create-bin').click(add);
 $('#upload-data').click(displayUploadData);
 $('#process-data').click(processData);
+$('#inventoryFile').on('change', updateFileName)
 }
 
 $(document).ready(init);

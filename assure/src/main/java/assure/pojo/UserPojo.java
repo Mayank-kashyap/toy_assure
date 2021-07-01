@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name","type"})})
 public class UserPojo {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -30,11 +30,9 @@
   <div class="collapse navbar-collapse menu navbar-nav" id="navbarNav">
 
 
-    <a class="nav-link nav-item" th:classappend="${#request.getServletPath() == '/channel' ? 'active' : ''}" th:href="@{/site/channel}">Channels</a>
+    <a class="nav-link nav-item" th:classappend="${#request.getServletPath() == '/channels' ? 'active' : ''}" th:href="@{/site/channels}">Channels</a>
 
     <a class="nav-link nav-item" th:classappend="${#request.getServletPath() == '/channel_listing' ? 'active' : ''}" th:href="@{/site/channel_listing}">Channel Listing</a>
-
-    <a class="nav-link nav-item" th:classappend="${#request.getServletPath() == '/order' ? 'active' : ''}" th:href="@{/site/order}">Orders</a>
 
     <a class="nav-link nav-item" th:classappend="${#request.getServletPath() == '/order' ? 'active' : ''}" th:href="@{/site/order}">Order</a>
 

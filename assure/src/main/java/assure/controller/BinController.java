@@ -22,8 +22,8 @@ public class BinController extends ExceptionHandler {
 
     @ApiOperation("Add a bin")
     @RequestMapping(path = "/api/bin", method = RequestMethod.POST)
-    public void add(){
-        binDto.add();
+    public Long add(){
+        return binDto.add();
     }
 
     @ApiOperation("Add a bin inventory")

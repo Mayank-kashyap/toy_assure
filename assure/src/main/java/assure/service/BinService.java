@@ -24,8 +24,8 @@ public class BinService {
 
     //Add bin pojo
     @Transactional(rollbackFor = ApiException.class)
-    public void add(BinPojo binPojo){
-        binDao.insert(binPojo);
+    public Long add(BinPojo binPojo){
+        return binDao.insert(binPojo);
     }
 
     //Add bin sku
@@ -56,10 +56,19 @@ public class BinService {
             checkBin(binSkuPojo.getBinId());
         }
         for (BinSkuPojo binSkuPojo:binSkuPojoList){
-            if(checkAlreadyExist(binSkuPojo)==null)
+            if(checkAlreadyExist(binSkuPojo)==null){
                 binDao.insert(binSkuPojo);
-            else
+                InventoryPojo inventoryPojo=new InventoryPojo();
+                inventoryPojo.setAvailableQuantity(binSkuPojo.getQuantity());
+                inventoryService.update(binSkuPojo.getGlobalSkuId(),inventoryPojo);
+            }
+
+            else{
                 update(checkAlreadyExist(binSkuPojo).getId(),binSkuPojo);
+                InventoryPojo inventoryPojo=new InventoryPojo();
+                inventoryPojo.setAvailableQuantity(binSkuPojo.getQuantity());
+                inventoryService.update(binSkuPojo.getGlobalSkuId(),inventoryPojo);
+            }
         }
     }
     //Update bin sku pojo

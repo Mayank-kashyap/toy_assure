@@ -2,3 +2,113 @@
  at [Source: (PushbackInputStream); line: 5, column: 88]; nested exception is com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1])
  at [Source: (PushbackInputStream); line: 5, column: 88]
 2021-06-27 10:29:03 WARN  PageNotFound:215 - Request method 'PUT' not supported
+2021-06-28 14:19:37 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-06-28 14:19:37 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-06-28 14:19:37 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-06-28 14:19:37 INFO  FOUserAgent:83 - Rendered page #1.
+2021-06-28 14:37:38 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-06-28 14:37:38 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-06-28 14:37:38 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-06-28 14:37:38 INFO  FOUserAgent:83 - Rendered page #1.
+2021-06-29 12:14:33 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-06-29 12:14:33 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-06-29 12:14:33 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-06-29 12:14:33 INFO  FOUserAgent:83 - Rendered page #1.
+2021-06-29 12:46:50 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `common.model.Type` from String "customer": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `common.model.Type` from String "customer": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"])
+2021-06-29 12:46:53 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `common.model.Type` from String "customer": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `common.model.Type` from String "customer": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"])
+2021-06-29 12:53:42 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `common.model.Type` from String "client": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `common.model.Type` from String "client": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"])
+2021-06-29 12:56:34 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `common.model.Type` from String "client": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `common.model.Type` from String "client": value not one of declared Enum instance names: [CLIENT, CUSTOMER]
+ at [Source: (PushbackInputStream); line: 1, column: 29] (through reference chain: common.model.UserForm["type"])
+2021-06-29 13:28:48 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `java.lang.Double` from String "hjvv": not a valid Double value
+ at [Source: (PushbackInputStream); line: 1, column: 75] (through reference chain: common.model.ProductForm["mrp"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.lang.Double` from String "hjvv": not a valid Double value
+ at [Source: (PushbackInputStream); line: 1, column: 75] (through reference chain: common.model.ProductForm["mrp"])
+2021-06-29 13:45:09 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-06-29 13:50:00 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-06-29 13:55:05 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-06-29 14:47:11 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-06-29 15:38:05 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-06-29 15:38:05 ERROR SqlExceptionHelper:142 - Duplicate entry 'Client-4' for key 'assure_user_pojo.UKekd98wdr1yidnd2h0gmcut5r3'
+2021-06-29 15:55:41 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-06-29 15:55:41 ERROR SqlExceptionHelper:142 - Duplicate entry 'clientsku-3' for key 'assure_product_pojo.UKccg049cnh3ykilysbcau97cvt'
+2021-06-30 13:53:39 WARN  SqlExceptionHelper:137 - SQL Error: 1062, SQLState: 23000
+2021-06-30 13:53:40 ERROR SqlExceptionHelper:142 - Duplicate entry 'Client-2' for key 'assure_user_pojo.UKekd98wdr1yidnd2h0gmcut5r3'
+2021-07-01 00:32:15 WARN  PageNotFound:215 - Request method 'POST' not supported
+2021-07-01 00:40:51 WARN  PageNotFound:215 - Request method 'POST' not supported
+2021-07-01 00:56:17 WARN  PageNotFound:215 - Request method 'POST' not supported
+2021-07-01 02:13:06 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `common.model.OrderItemForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-07-01 03:17:17 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 03:17:17 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 03:17:17 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 03:17:17 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 03:17:33 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 03:17:33 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 03:17:33 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 03:17:33 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 03:50:27 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 03:50:27 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 03:50:27 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 03:50:27 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 04:03:31 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 04:03:31 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 04:03:31 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 04:03:31 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 04:03:40 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 04:03:40 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 04:03:40 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 04:03:40 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 08:30:55 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 08:30:55 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 08:30:55 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 08:30:56 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 12:48:23 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 12:48:23 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 12:48:23 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 12:48:23 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 12:58:16 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 12:58:16 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 12:58:16 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 12:58:16 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 13:00:28 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 13:00:28 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 13:00:28 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 13:00:28 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 13:02:06 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 13:02:06 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 13:02:06 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 13:02:06 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 13:04:31 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 13:04:31 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 13:04:31 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 13:04:31 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 13:05:04 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 13:05:04 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 13:05:04 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 13:05:04 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 14:16:27 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 14:16:27 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 14:16:27 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 14:16:27 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 14:28:47 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `java.lang.Double` from String "jhbhjb": not a valid Double value
+ at [Source: (PushbackInputStream); line: 1, column: 76] (through reference chain: java.util.ArrayList[0]->common.model.ProductForm["mrp"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.lang.Double` from String "jhbhjb": not a valid Double value
+ at [Source: (PushbackInputStream); line: 1, column: 76] (through reference chain: java.util.ArrayList[0]->common.model.ProductForm["mrp"])
+2021-07-01 14:56:25 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 14:56:25 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 14:56:25 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 14:56:26 INFO  FOUserAgent:83 - Rendered page #1.

@@ -29,6 +29,7 @@ public class ChannelDao extends AbstractDao {
     public ChannelPojo get(Long id){
         return entityManager.find(ChannelPojo.class,id);
     }
+
     @Transactional
     public List<ChannelPojo> getAll(){
         String select="select p from ChannelPojo p";
@@ -38,6 +39,17 @@ public class ChannelDao extends AbstractDao {
         }
         return query.getResultList();
     }
+
+    @Transactional
+    public List<ChannelListingPojo> getAllChannelListing(){
+        String select="select p from ChannelListingPojo p";
+        TypedQuery<ChannelListingPojo> query=getQuery(select,ChannelListingPojo.class);
+        if(query == null){
+            return new ArrayList<>();
+        }
+        return query.getResultList();
+    }
+
     @Transactional
     public List<ChannelPojo> getByName(String name){
         String select="select p from ChannelPojo p where name=:name";
@@ -47,10 +59,23 @@ public class ChannelDao extends AbstractDao {
     }
 
     @Transactional
-    public List<ChannelListingPojo> getByChannelSkuId(String channelSkuId){
+    public ChannelListingPojo getByChannelSkuId(String channelSkuId){
         String select="select p from ChannelListingPojo p where channelSkuId=:channelSkuId";
         TypedQuery<ChannelListingPojo> query=getQuery(select,ChannelListingPojo.class);
         query.setParameter("channelSkuId",channelSkuId);
+        List<ChannelListingPojo> channelListingPojoList= query.getResultList();
+        if(channelListingPojoList.size()>0){
+            return channelListingPojoList.get(0);
+        }
+        else
+            return null;
+    }
+
+    @Transactional
+    public List<ChannelListingPojo> getByChannelId(Long channelId){
+        String select="select p from ChannelListingPojo p where channelId=:channelId";
+        TypedQuery<ChannelListingPojo> query=getQuery(select,ChannelListingPojo.class);
+        query.setParameter("channelId",channelId);
         return query.getResultList();
     }
 }

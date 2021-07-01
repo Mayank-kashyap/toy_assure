@@ -13,12 +13,22 @@ class UiController extends AbstractUiController{
 
     @RequestMapping(value = "")
     public ModelAndView index() {
-        System.out.println(baseUrl);
         return mav("home.html");
     }
 
-    @RequestMapping(value = "/site/channel")
+    @RequestMapping(value = "/site/channels")
     public ModelAndView channels() {
         return mav("channels.html");
     }
+
+    @RequestMapping(value = "/site/channel_listing")
+    public ModelAndView channelListings() {
+        return mav("channelListing.html");
+    }
+
+    @RequestMapping(value = "/site/order")
+    public ModelAndView order() {
+        return mav("order.html");
+    }
+
     }

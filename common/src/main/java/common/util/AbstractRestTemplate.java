@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class AbstractRestTemplate {
     @Autowired
-    private RestTemplate restTemplate;
+    public RestTemplate restTemplate;
 
     public HttpHeaders getHeaders(){
         HttpHeaders httpHeaders=new HttpHeaders();

@@ -3,10 +3,8 @@ package assure.dto;
 import assure.pojo.*;
 import assure.service.*;
 import assure.util.ConversionUtil;
-import common.model.OrderData;
-import common.model.OrderItemData;
-import common.model.OrderItemForm;
-import common.model.Type;
+import assure.util.StringUtil;
+import common.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +26,7 @@ public class OrderDto {
 
     @Transactional(rollbackFor = ApiException.class)
     public void add(String clientName, String channelOrderId, String customerName, OrderItemForm orderItemForm) throws ApiException {
+        normalize(orderItemForm);
         check(orderItemForm);
         UserPojo userPojo=userService.get(clientName, Type.CLIENT);
         UserPojo userPojo1=userService.get(customerName,Type.CUSTOMER);
@@ -36,6 +35,44 @@ public class OrderDto {
         OrderPojo orderPojo= ConversionUtil.convert(userPojo,userPojo1,channelPojo,channelOrderId);
         OrderItemPojo orderItemPojo=ConversionUtil.convert(orderPojo.getId(),productPojo, orderItemForm);
         orderService.add(orderPojo,orderItemPojo);
+    }
+
+    @Transactional(rollbackFor = ApiException.class)
+    public void add(String clientName, String channelOrderId, String customerName, List<OrderItemForm> orderItemFormList) throws ApiException {
+        for (OrderItemForm orderItemForm:orderItemFormList){
+            normalize(orderItemForm);
+            check(orderItemForm);
+        }
+        UserPojo userPojo=userService.get(clientName, Type.CLIENT);
+        UserPojo userPojo1=userService.get(customerName,Type.CUSTOMER);
+        ChannelPojo channelPojo=channelService.get("INTERNAL");
+        OrderPojo orderPojo= ConversionUtil.convert(userPojo,userPojo1,channelPojo,channelOrderId);
+        List<OrderItemPojo> orderItemPojoList=new ArrayList<>();
+        for (OrderItemForm orderItemForm:orderItemFormList){
+            ProductPojo productPojo= productService.getFromClientSkuId(orderItemForm.getClientSkuId());
+            OrderItemPojo orderItemPojo=ConversionUtil.convert(orderPojo.getId(),productPojo, orderItemForm);
+            orderItemPojoList.add(orderItemPojo);
+        }
+        orderService.add(orderPojo,orderItemPojoList);
+    }
+
+    @Transactional(rollbackFor = ApiException.class)
+    public void add(String channelName,String clientName,String customerName,String channelOrderId,List<OrderItemsForm> orderItemsFormList) throws ApiException {
+        for (OrderItemsForm orderItemsForm:orderItemsFormList){
+            normalize(orderItemsForm);
+            check(orderItemsForm);
+        }
+        UserPojo userPojo=userService.get(clientName,Type.CLIENT);
+        UserPojo userPojo1=userService.get(customerName,Type.CUSTOMER);
+        ChannelPojo channelPojo=channelService.get(channelName);
+        OrderPojo orderPojo=ConversionUtil.convert(userPojo,userPojo1,channelPojo,channelOrderId);
+        List<OrderItemPojo> orderItemPojoList=new ArrayList<>();
+        for (OrderItemsForm orderItemsForm:orderItemsFormList){
+            ChannelListingPojo channelListingPojo=channelService.getChannelListing(orderItemsForm.getChannelSkuId());
+            OrderItemPojo orderItemPojo=ConversionUtil.convert(orderPojo.getId(),channelListingPojo, orderItemsForm);
+            orderItemPojoList.add(orderItemPojo);
+        }
+        orderService.add(orderPojo,orderItemPojoList);
     }
 
     @Transactional(rollbackFor = ApiException.class)
@@ -71,7 +108,7 @@ public class OrderDto {
     }
 
     private void check(OrderItemForm orderItemForm) throws ApiException {
-        if(orderItemForm.getClientSkuId()==null)
+        if(StringUtil.isEmpty(orderItemForm.getClientSkuId()))
             throw new ApiException("Client sku id cannot be empty");
         if(orderItemForm.getOrderedQuantity()==null)
             throw new ApiException("Ordered Quantity cannot be empty");
@@ -81,5 +118,26 @@ public class OrderDto {
             throw new ApiException("Ordered quantity should be positive");
         if(orderItemForm.getSellingPricePerUnit()<=0.0)
             throw new ApiException("Selling price should be positive");
+    }
+
+    private void check(OrderItemsForm orderItemsForm) throws ApiException {
+        if (StringUtil.isEmpty(orderItemsForm.getChannelSkuId()))
+            throw new ApiException("Channel skuId cannot be empty");
+        if (orderItemsForm.getQuantity()==null)
+            throw new ApiException("Channel skuId cannot be empty");
+        if (orderItemsForm.getSellingPricePerUnit()==null)
+            throw new ApiException("Selling price cannot be empty");
+        if (orderItemsForm.getQuantity()<=0)
+            throw new ApiException("Quantity should be positive");
+        if (orderItemsForm.getSellingPricePerUnit()<=0)
+            throw new ApiException("Selling price should be positive");
+    }
+
+    public void normalize(OrderItemForm orderItemForm){
+        orderItemForm.setClientSkuId(StringUtil.trim(orderItemForm.getClientSkuId()));
+    }
+
+    public void normalize(OrderItemsForm orderItemsForm){
+        orderItemsForm.setChannelSkuId(StringUtil.trim(orderItemsForm.getChannelSkuId()));
     }
 }

@@ -37,7 +37,16 @@ public class InventoryService {
         inventoryPojo1.setAllocatedQuantity(inventoryPojo.getAllocatedQuantity());
         inventoryPojo1.setFulfilledQuantity(inventoryPojo.getFulfilledQuantity());
         inventoryDao.update(globalSkuId,inventoryPojo1);
-        binService.update(globalSkuId, inventoryPojo.getAllocatedQuantity());
+    }
+
+    @Transactional(rollbackFor = ApiException.class)
+    public void fulfill(Long globalSkuId,InventoryPojo inventoryPojo) throws ApiException {
+        check(globalSkuId);
+        InventoryPojo inventoryPojo1=inventoryDao.select(globalSkuId);
+        inventoryPojo1.setAvailableQuantity(inventoryPojo.getAvailableQuantity());
+        inventoryPojo1.setAllocatedQuantity(inventoryPojo.getAllocatedQuantity());
+        inventoryPojo1.setFulfilledQuantity(inventoryPojo.getFulfilledQuantity());
+        inventoryDao.update(globalSkuId,inventoryPojo1);
     }
 
     @Transactional(rollbackFor = ApiException.class)

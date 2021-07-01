@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <channelOrderId>order-2</channelOrderId>
+    <total>3000.0</total>
+    <item>
+        <name>product-2</name>
+        <sellingPricePerUnit>300.0</sellingPricePerUnit>
+        <quantity>10</quantity>
+    </item>
+</items>

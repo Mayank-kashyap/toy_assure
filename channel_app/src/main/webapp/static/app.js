@@ -27,6 +27,7 @@ function toJson($form){
 function handleAjaxError(response){
     console.log(response.responseText);
 	var response = JSON.parse(response.responseText);
+	console.log(response.message);
     toastr.error(response.message);
 }
 
@@ -97,6 +98,10 @@ function checkHeader(file,header_list,callback) {
 				}
     }
 	});
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
 }
 
 

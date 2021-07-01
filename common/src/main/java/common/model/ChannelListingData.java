@@ -7,4 +7,5 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ChannelListingData extends ChannelListingForm{
     private Long id;
+    private Long channelId;
 }

@@ -16,8 +16,10 @@ public class BinDao extends AbstractDao {
     private EntityManager entityManager;
 
     @Transactional
-    public void insert(BinPojo binPojo){
+    public Long insert(BinPojo binPojo){
         entityManager.persist(binPojo);
+        entityManager.flush();
+        return binPojo.getId();
     }
 
     @Transactional

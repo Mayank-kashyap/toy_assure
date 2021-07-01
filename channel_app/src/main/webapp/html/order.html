@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head th:replace="snippets.html :: name_head">
+    <title>Orders</title>
+</head>
+<body>
+<div class="container-fluid">
+<nav th:replace="snippets.html :: name_app_navbar"></nav>
+&nbsp;
+<button type="button" class="btn btn-primary" title="Create order" id="open-add-order">Create order</button>
+
+<!-- Blank Row -->
+<div class="row">
+    &nbsp;
+</div>
+<!--Display table-->
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped" id="order-table">
+            <thead>
+            <tr>
+                <th scope="col">Client Name</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Channel Name</th>
+                <th scope="col">Channel Order Id</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Create Order Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="add-order-modal">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" id="order-add-form">
+                    <div class="form-group row">
+
+                        <label for="inputChannelName" class="col-sm-4 col-form-label">Channel Name</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="channelName" placeholder="Enter channel name" id="inputChannelName" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="inputClientName" class="col-sm-4 col-form-label">Client Name</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="clientName" placeholder="Enter Client Name" id="inputClientName" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="inputCustomerName" class="col-sm-4 col-form-label">Customer Name</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="customerName" placeholder="Enter customer Name" id="inputCustomerName" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="inputChannelOrderId" class="col-sm-4 col-form-label">Channel OrderId</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="channelOrderId" placeholder="Enter channel OrderId" id="inputChannelOrderId" required>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id">
+                </form >
+                <hr>
+                <form class="form-inline" id="orderItem-form">
+                    <div class="form-group row">
+
+                        <label for="inputChannelSkuId" class="col-sm-4 col-form-label">ChannelSkuId</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="channelSkuId" placeholder="Enter ChannelSkuId" id="inputChannelSkuId" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="inputQuantity" class="col-sm-4 col-form-label">Quantity</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="quantity" placeholder="Enter Quantity" id="inputQuantity" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="inputSellingPricePerUnit" class="col-sm-4 col-form-label">Selling Price</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="sellingPricePerUnit" placeholder="Enter Selling Price" id="inputSellingPricePerUnit" required>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" title="Add order item" id="add-orderItem">Add</button>
+                </form>
+                <br/>
+                <table class="table table-striped" id="orderItem-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Srl No</th>
+                        <th scope="col">ChannelSkuId</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Selling Price</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" title="Add order" id="add-order">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Order View Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="view-order-modal">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Order Items</h5>
+                <button type="button" class="close" id="close-view" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Table -->
+                    <div class="col-12">
+                        <table class="table table-striped" id="order-item-table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Client Sku Id</th>
+                                <th scope="col">Ordered quantity</th>
+                                <th scope="col">Selling Price per unit</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="snippets.html :: name_footer"></footer>
+
+<script th:src="@{/static/order.js}"/>
+    </script>
+</div>
+</body>
+</html>

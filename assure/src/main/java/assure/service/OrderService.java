@@ -22,6 +22,8 @@ public class OrderService {
     private ProductService productService;
     @Autowired
     private InventoryService inventoryService;
+    @Autowired
+    private BinService binService;
 
     @Transactional(rollbackFor = ApiException.class)
     public void add(OrderPojo orderPojo,OrderItemPojo orderItemPojo) throws ApiException {
@@ -29,6 +31,16 @@ public class OrderService {
         Long orderId=orderDao.insert(orderPojo);
         orderItemPojo.setOrderId(orderId);
         orderDao.insert(orderItemPojo);
+    }
+
+    @Transactional(rollbackFor = ApiException.class)
+    public void add(OrderPojo orderPojo,List<OrderItemPojo> orderItemPojoList) throws ApiException {
+        check(orderPojo.getChannelOrderId());
+        Long orderId=orderDao.insert(orderPojo);
+        for (OrderItemPojo orderItemPojo:orderItemPojoList){
+            orderItemPojo.setOrderId(orderId);
+            orderDao.insert(orderItemPojo);
+        }
     }
 
     @Transactional(rollbackFor = ApiException.class)
@@ -55,16 +67,15 @@ public class OrderService {
         long count = 0L;
         for (OrderItemPojo orderItemPojo:orderItemPojoList){
             InventoryPojo inventoryPojo=inventoryService.get(orderItemPojo.getGlobalSkuId());
-            Long allocate=Math.min(inventoryPojo.getAvailableQuantity(),orderItemPojo.getOrderedQuantity());
-                InventoryPojo inventoryPojo1=new InventoryPojo();
-                inventoryPojo1.setAvailableQuantity(inventoryPojo.getAvailableQuantity()-allocate);
-                inventoryPojo1.setAllocatedQuantity(allocate);
-                inventoryPojo1.setFulfilledQuantity(0L);
-                inventoryService.allocate(orderItemPojo.getGlobalSkuId(), inventoryPojo1);
-                OrderItemPojo orderItemPojo1=new OrderItemPojo();
-                orderItemPojo1.setAllocatedQuantity(allocate);
-                orderItemPojo1.setFulfilledQuantity(0L);
-                update(orderItemPojo.getId(), orderItemPojo1);
+            Long allocate=Math.min(inventoryPojo.getAvailableQuantity(),orderItemPojo.getOrderedQuantity()-orderItemPojo.getAllocatedQuantity());
+                inventoryPojo.setAvailableQuantity(inventoryPojo.getAvailableQuantity()-allocate);
+                inventoryPojo.setAllocatedQuantity(inventoryPojo.getAllocatedQuantity()+allocate);
+                inventoryPojo.setFulfilledQuantity(inventoryPojo.getFulfilledQuantity());
+                inventoryService.allocate(orderItemPojo.getGlobalSkuId(), inventoryPojo);
+                binService.update(orderItemPojo.getGlobalSkuId(),allocate);
+                orderItemPojo.setAllocatedQuantity(orderItemPojo.getAllocatedQuantity()+allocate);
+                orderItemPojo.setFulfilledQuantity(0L);
+                update(orderItemPojo.getId(), orderItemPojo);
                 if(allocate.equals(orderItemPojo.getOrderedQuantity()))
                     count++;
         }
@@ -76,11 +87,30 @@ public class OrderService {
     }
 
     @Transactional(rollbackFor = ApiException.class)
-    public void update(Long id,OrderItemPojo orderItemPojo){
-        OrderItemPojo orderItemPojo1=orderDao.getOrderItem(id);
+    public void update(Long id,OrderItemPojo orderItemPojo) throws ApiException {
+        OrderItemPojo orderItemPojo1=checkOrderItem(id);
         orderItemPojo1.setFulfilledQuantity(orderItemPojo.getFulfilledQuantity());
         orderItemPojo1.setAllocatedQuantity(orderItemPojo.getAllocatedQuantity());
         orderDao.update(id, orderItemPojo1);
+    }
+
+    @Transactional(rollbackFor = ApiException.class)
+    public void fulfill(Long id,OrderPojo orderPojo) throws ApiException {
+        OrderPojo orderPojo1=check(id);
+        List<OrderItemPojo> orderItemPojoList=orderDao.getOrderItemsByOrderId(id);
+        for (OrderItemPojo orderItemPojo:orderItemPojoList){
+
+            orderItemPojo.setFulfilledQuantity(orderItemPojo.getOrderedQuantity());
+            orderItemPojo.setAllocatedQuantity(orderItemPojo.getAllocatedQuantity()-orderItemPojo.getOrderedQuantity());
+            update(orderItemPojo.getId(), orderItemPojo);
+            InventoryPojo inventoryPojo=inventoryService.get(orderItemPojo.getGlobalSkuId());
+
+            inventoryPojo.setFulfilledQuantity(inventoryPojo.getFulfilledQuantity()+orderItemPojo.getOrderedQuantity());
+            inventoryPojo.setAllocatedQuantity(inventoryPojo.getAllocatedQuantity()-orderItemPojo.getOrderedQuantity());
+            inventoryService.fulfill(orderItemPojo.getGlobalSkuId(), inventoryPojo);
+        }
+        orderPojo1.setStatus(orderPojo.getStatus());
+        orderDao.updateOrder(id, orderPojo1);
     }
 
     private OrderPojo check(Long id) throws ApiException {
@@ -94,6 +124,13 @@ public class OrderService {
         OrderPojo orderPojo=orderDao.getFromChannelOrderId(channelOrderId);
         if(orderPojo!=null)
             throw new ApiException("Order with given channel order id already exists: "+channelOrderId);
+    }
+
+    private OrderItemPojo checkOrderItem(Long id) throws ApiException {
+        OrderItemPojo orderItemPojo=orderDao.getOrderItem(id);
+        if(orderItemPojo==null)
+            throw new ApiException("Order Item with given id does not exist: "+id);
+        return orderItemPojo;
     }
 
     private void checkAllocated(OrderPojo orderPojo) throws ApiException {

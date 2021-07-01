@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtm">
+<head th:replace="snippets.html :: name_head">
+    <title>Channel Listings</title>
+</head>
+<body>
+<div class="container-fluid">
+<nav th:replace="snippets.html :: name_app_navbar"></nav>
+&nbsp;
+<button type="button" class="btn btn-primary" title="Add channel listing" id="upload-data">Add channel listing</button>
+
+<!-- Blank Row -->
+<div class="row">
+    &nbsp;
+</div>
+
+<div class="row">
+    <!-- Table -->
+    <div class="col-12">
+        <table class="table table-striped" id="channel-listing-table">
+            <thead>
+            <tr>
+                <th scope="col">Channel Sku Id</th>
+                <th scope="col">Client Sku Id</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="upload-channel-listing-modal">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Upload Channel listing</h5>
+                <button type="button" class="close" id="close-upload" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <form class="form-inline" id="channel-listing-upload-form">
+                        <div class="form-group">
+                            <label for="inputClientName" class="col-sm-4 col-form-label">Client Name</label>
+                            <div class="col-sm-8">
+                                <input list="clientName" class="form-control" name="clientName" id="inputClientName" placeholder="Enter client name">
+                                <datalist id="clientName">
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputChannelName" class="col-sm-4 col-form-label">Channel Name</label>
+                            <div class="col-sm-8">
+                                <input list="channelName" class="form-control" name="channelName" id="inputChannelName" placeholder="Enter channel name">
+                                <datalist id="channelName">
+                                </datalist>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="channel-listing-file file">
+                        <input type="file" class="custom-file-input" id="channelListingFile">
+                        <label class="custom-file-label" for="channelListingFile" id="channelListingFileName">Choose file</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="process-data">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer th:replace="snippets.html :: name_footer"></footer>
+
+<script th:src="@{/static/channelListing.js}"/>
+</script>
+
+</body>
+</html>

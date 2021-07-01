@@ -20,7 +20,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Configuration
-@ComponentScan("channel_app")
+@ComponentScan("channel")
 @PropertySources({ //
         @PropertySource(value = "file:./channel.properties", ignoreResourceNotFound = true) //
 })

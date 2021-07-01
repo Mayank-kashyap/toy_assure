@@ -103,6 +103,39 @@ public class ConversionUtil {
         return channelListingPojo;
     }
 
+    public static List<ChannelData> convertChannel(List<ChannelPojo> channelPojoList){
+        List<ChannelData> channelDataList=new ArrayList<>();
+        for (ChannelPojo channelPojo:channelPojoList){
+            ChannelData channelData=new ChannelData();
+            channelData.setId(channelPojo.getId());
+            channelData.setName(channelPojo.getName());
+            channelData.setInvoiceType(channelPojo.getInvoiceType());
+            channelDataList.add(channelData);
+        }
+        return channelDataList;
+    }
+
+    public static ChannelData convert(ChannelPojo channelPojo){
+        ChannelData channelData=new ChannelData();
+        channelData.setId(channelPojo.getId());
+        channelData.setName(channelPojo.getName());
+        channelData.setInvoiceType(channelPojo.getInvoiceType());
+        return channelData;
+    }
+    public static List<ChannelListingData> convertChannelListing(Map<ChannelListingPojo,ProductPojo> channelListingPojoProductPojoMap){
+        List<ChannelListingData> channelListingDataList=new ArrayList<>();
+        for(ChannelListingPojo channelListingPojo: channelListingPojoProductPojoMap.keySet()){
+            ChannelListingData channelListingData=new ChannelListingData();
+            ProductPojo productPojo=channelListingPojoProductPojoMap.get(channelListingPojo);
+            channelListingData.setId(channelListingPojo.getId());
+            channelListingData.setChannelId(channelListingPojo.getChannelId());
+            channelListingData.setChannelSkuId(channelListingPojo.getChannelSkuId());
+            channelListingData.setClientSkuId(productPojo.getClientSkuId());
+            channelListingDataList.add(channelListingData);
+        }
+        return channelListingDataList;
+    }
+
     public static OrderPojo convert(UserPojo userPojo, UserPojo userPojo1, ChannelPojo channelPojo, String channelOrderId){
         OrderPojo orderPojo=new OrderPojo();
         orderPojo.setClientId(userPojo.getId());
@@ -151,5 +184,30 @@ public class ConversionUtil {
         orderItemPojo.setFulfilledQuantity(0L);
         orderItemPojo.setSellingPricePerUnit(orderItemForm.getSellingPricePerUnit());
         return orderItemPojo;
+    }
+
+    public static OrderItemPojo convert(Long orderId,ChannelListingPojo channelListingPojo,OrderItemsForm orderItemsForm){
+        OrderItemPojo orderItemPojo=new OrderItemPojo();
+        orderItemPojo.setOrderId(orderId);
+        orderItemPojo.setGlobalSkuId(channelListingPojo.getGlobalSkuId());
+        orderItemPojo.setOrderedQuantity(orderItemsForm.getQuantity());
+        orderItemPojo.setAllocatedQuantity(0L);
+        orderItemPojo.setFulfilledQuantity(0L);
+        orderItemPojo.setSellingPricePerUnit(orderItemsForm.getSellingPricePerUnit());
+        return orderItemPojo;
+    }
+
+    public static OrderInvoiceXmlList convertToInvoiceDataList(List<OrderItemPojo> orderItemPojoList, Map<OrderItemPojo,ProductPojo> productPojoList) {
+        List<OrderInvoiceData> orderInvoiceDataList = new ArrayList<>();
+        for (OrderItemPojo orderItemPojo : orderItemPojoList) {
+            OrderInvoiceData orderInvoiceData = new OrderInvoiceData();
+            orderInvoiceData.setSellingPricePerUnit(orderItemPojo.getSellingPricePerUnit());
+            orderInvoiceData.setQuantity(orderItemPojo.getOrderedQuantity());
+            orderInvoiceData.setName(productPojoList.get(orderItemPojo).getName());
+            orderInvoiceDataList.add(orderInvoiceData);
+        }
+        OrderInvoiceXmlList orderInvoiceXmlList = new OrderInvoiceXmlList();
+        orderInvoiceXmlList.setOrderInvoiceData(orderInvoiceDataList);
+        return orderInvoiceXmlList;
     }
 }

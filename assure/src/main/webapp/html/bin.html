@@ -4,7 +4,7 @@
     <title>Bin</title>
 </head>
 <body>
-
+<div class="container-fluid">
 <nav th:replace="snippets.html :: name_app_navbar"></nav>
 
 
@@ -50,7 +50,7 @@
             </div>
 
             <div class="modal-body">
-                <div class="inventory-file">
+                <div class="inventory-file file">
                     <input type="file" class="custom-file-input" id="inventoryFile">
                     <label class="custom-file-label" for="inventoryFile" id="inventoryFileName">Choose file</label>
                 </div>
@@ -64,7 +64,6 @@
     </div>
 </div>
 </div>
-
 
 <footer th:replace="snippets.html :: name_footer"></footer>
 

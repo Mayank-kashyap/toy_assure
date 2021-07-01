@@ -19,14 +19,14 @@ public class ProductController extends ExceptionHandler {
 
     @ApiOperation(value = "Adds a product")
     @RequestMapping(path = "/api/product/user/{clientId}", method = RequestMethod.POST)
-    public void add(@PathVariable Long clientId, @RequestBody ProductForm productForm) throws ApiException {
-        productDto.add(clientId,productForm);
+    public void add(@PathVariable String clientName, @RequestBody ProductForm productForm) throws ApiException {
+        productDto.add(clientName,productForm);
     }
 
     @ApiOperation(value = "Adds product list")
-    @RequestMapping(path = "/api/product/list/{clientId}", method = RequestMethod.POST)
-    public void add(@PathVariable Long clientId,@RequestBody List<ProductForm> productFormList) throws ApiException {
-        productDto.add(clientId, productFormList);
+    @RequestMapping(path = "/api/product/list/{clientName}", method = RequestMethod.POST)
+    public void add(@PathVariable String clientName, @RequestBody List<ProductForm> productFormList) throws ApiException {
+        productDto.add(clientName, productFormList);
     }
 
     @ApiOperation(value = "Get a product by Id")

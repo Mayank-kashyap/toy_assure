@@ -58,6 +58,10 @@ public class ProductDao extends AbstractDao {
         String select =" select p from ProductPojo p where clientSkuId=:clientSkuId";
         TypedQuery<ProductPojo> query=getQuery(select,ProductPojo.class);
         query.setParameter("clientSkuId",clientSkuId);
-        return query.getSingleResult();
+        List<ProductPojo> productPojoList= query.getResultList();
+        if(productPojoList.size()>0)
+            return productPojoList.get(0);
+        else
+            return null;
     }
 }

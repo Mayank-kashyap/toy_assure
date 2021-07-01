@@ -33,3 +33,35 @@
 2021-06-27 17:31:50 WARN  PageNotFound:1161 - No mapping found for HTTP request with URI [/channel_app/] in DispatcherServlet with name 'dispatcher'
 2021-06-27 17:31:51 WARN  PageNotFound:1161 - No mapping found for HTTP request with URI [/channel_app/] in DispatcherServlet with name 'dispatcher'
 2021-06-27 17:32:14 WARN  PageNotFound:1161 - No mapping found for HTTP request with URI [/channel_app/swagger-ui.html] in DispatcherServlet with name 'dispatcher'
+2021-06-29 14:21:56 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `common.model.ChannelListingForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `common.model.ChannelListingForm` out of START_ARRAY token
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-06-30 12:06:27 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]
+2021-07-01 04:30:44 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize value of type `common.model.InvoiceType` from String "": value not one of declared Enum instance names: [CHANNEL, SELF]
+ at [Source: (PushbackInputStream); line: 1, column: 26] (through reference chain: common.model.ChannelForm["invoiceType"]); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `common.model.InvoiceType` from String "": value not one of declared Enum instance names: [CHANNEL, SELF]
+ at [Source: (PushbackInputStream); line: 1, column: 26] (through reference chain: common.model.ChannelForm["invoiceType"])
+2021-07-01 11:01:38 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]
+2021-07-01 11:09:16 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]
+2021-07-01 11:11:03 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of START_OBJECT token
+ at [Source: (ByteArrayInputStream); line: 1, column: 1]
+2021-07-01 11:51:43 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot construct instance of `common.model.OrderForm` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('{"channelName":"channel-1","clientId":"5","customerId":"4","channelOrderId":"order-2","id":""}')
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `common.model.OrderForm` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('{"channelName":"channel-1","clientId":"5","customerId":"4","channelOrderId":"order-2","id":""}')
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-07-01 12:00:21 WARN  DefaultHandlerExceptionResolver:384 - Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document: Cannot construct instance of `common.model.OrderForm` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('{"channelName":"channel-1","clientId":"5","customerId":"4","channelOrderId":"order-2","id":""}')
+ at [Source: (PushbackInputStream); line: 1, column: 1]; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `common.model.OrderForm` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('{"channelName":"channel-1","clientId":"5","customerId":"4","channelOrderId":"order-2","id":""}')
+ at [Source: (PushbackInputStream); line: 1, column: 1]
+2021-07-01 13:38:46 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 13:38:46 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 13:38:46 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 13:38:46 INFO  FOUserAgent:83 - Rendered page #1.
+2021-07-01 14:19:47 INFO  FOUserAgent:83 - An fo:table  (No context info available) is wider than the available room in inline-progression-dimension. Adjusting end-indent based on overconstrained geometry rules (XSL 1.1, ch. 5.3.4)
+2021-07-01 14:19:47 WARN  FOUserAgent:94 - Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+2021-07-01 14:19:47 WARN  FOUserAgent:94 - Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+2021-07-01 14:19:47 INFO  FOUserAgent:83 - Rendered page #1.

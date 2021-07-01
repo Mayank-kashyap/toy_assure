@@ -29,7 +29,7 @@ public class UserService {
     public UserPojo get(String name,Type type) throws ApiException {
         List<UserPojo> userPojoList = userDao.getByName(name, type);
         if(userPojoList.isEmpty())
-            throw new ApiException("User with given name and type does not exist: "+name+" "+type);
+            throw new ApiException("User with name: "+name+" and type: "+type+" does not exist");
         return userPojoList.get(0);
     }
 
@@ -48,7 +48,7 @@ public class UserService {
     public void checkAlreadyExist(UserPojo userPojo) throws ApiException {
         List<UserPojo> userPojoList = userDao.getByName(userPojo.getName(),userPojo.getType());
         if(!userPojoList.isEmpty()){
-            throw new ApiException("User with given name already exists: "+ userPojo.getName());
+            throw new ApiException("User with name: "+userPojo.getName()+" and type: "+userPojo.getType()+" already exists");
         }
     }
 

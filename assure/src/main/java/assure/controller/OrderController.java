@@ -5,6 +5,7 @@ import assure.service.ApiException;
 import common.model.OrderData;
 import common.model.OrderItemData;
 import common.model.OrderItemForm;
+import common.model.OrderItemsForm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,18 @@ public class OrderController extends ExceptionHandler {
     @RequestMapping(path = "api/order/{clientName}/{channelOrderId}/{customerName}",method = RequestMethod.POST)
     public void add(@PathVariable String clientName, @PathVariable String channelOrderId, @PathVariable String customerName, @RequestBody OrderItemForm orderItemForm) throws ApiException {
         orderDto.add(clientName,channelOrderId,customerName, orderItemForm);
+    }
+
+    @ApiOperation("Create an order")
+    @RequestMapping(path = "api/order/list/{clientName}/{channelOrderId}/{customerName}",method = RequestMethod.POST)
+    public void add(@PathVariable String clientName, @PathVariable String channelOrderId, @PathVariable String customerName, @RequestBody List<OrderItemForm> orderItemFormList) throws ApiException {
+        orderDto.add(clientName, channelOrderId, customerName, orderItemFormList);
+    }
+
+    @ApiOperation(value = "Creates an order")
+    @RequestMapping(path = "/api/order/{channelName}/{clientName}/{customerName}/{channelOrderId}", method = RequestMethod.POST)
+    public void add(@PathVariable String channelName,@PathVariable String clientName,@PathVariable String customerName,@PathVariable String channelOrderId,@RequestBody List<OrderItemsForm> orderItemsForm) throws ApiException {
+        orderDto.add(channelName,clientName,customerName,channelOrderId,orderItemsForm);
     }
 
     @ApiOperation("Get order details")

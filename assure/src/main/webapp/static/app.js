@@ -99,7 +99,13 @@ function checkHeader(file,header_list,callback) {
 	});
 }
 
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
+}
 
+function isInt(n) {
+   return n % 1 === 0;
+}
 //toast default options
 toastr.options = {
   "closeButton": true,

@@ -4,7 +4,7 @@
     <title>Products</title>
 </head>
 <body>
-
+<div class="container-fluid">
 <nav th:replace="snippets.html :: name_app_navbar"></nav>
 
 &nbsp;
@@ -14,17 +14,16 @@
 <div class="row">
     &nbsp;
 </div>
-
+<!-- Product table-->
 <div class="row">
-    <!-- Table -->
     <div class="col-12">
         <table class="table table-striped" id="product-table">
             <thead>
             <tr>
-                <th scope="col">Client Sku Id</th>
+                <th scope="col">Client SKU ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Brand Id</th>
-                <th scope="col">Mrp</th>
+                <th scope="col">Brand ID</th>
+                <th scope="col">MRP</th>
                 <th scope="col">Description</th>
                 <th scope="col">Action</th>
             </tr>
@@ -48,9 +47,9 @@
             <div class="modal-body">
                 <form class="form-inline" id="product-edit-form">
                     <div class="form-group">
-                        <label for="inputClientSkuId" class="col-sm-4 col-form-label">Client Sku Id</label>
+                        <label for="inputClientSkuId" class="col-sm-4 col-form-label">Client SKU ID</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="clientSkuId" id="inputClientSkuId" placeholder="Enter name" readonly>
+                            <input type="text" class="form-control" name="clientSkuId" id="inputClientSkuId" placeholder="Enter client SKU ID" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,15 +59,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputBrandId" class="col-sm-4 col-form-label">Brand Id</label>
+                        <label for="inputBrandId" class="col-sm-4 col-form-label">Brand ID</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="brandId" id="inputBrandId" placeholder="Enter brand id">
+                            <input type="text" class="form-control" name="brandId" id="inputBrandId" placeholder="Enter brand ID">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputMrp" class="col-sm-4 col-form-label">Mrp</label>
+                        <label for="inputMrp" class="col-sm-4 col-form-label">MRP</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="mrp" id="inputMrp" placeholder="Enter mrp">
+                            <input type="text" class="form-control" name="mrp" id="inputMrp" placeholder="Enter MRP">
                         </div>
                     </div>
                     <div class="form-group">
@@ -88,7 +87,6 @@
     </div>
 </div>
 
-
 <!-- Product Upload Modal -->
 <div class="modal" tabindex="-1" role="dialog" id="upload-product-modal">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -105,9 +103,11 @@
                 <div>
                 <form class="form-inline" id="product-upload-form">
                     <div class="form-group">
-                        <label for="inputClientId" class="col-sm-4 col-form-label">Client Id</label>
+                        <label for="inputClientId" class="col-sm-4 col-form-label">Client Name</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="clientId" id="inputClientId" placeholder="Enter client id">
+                            <input list="clientId" class="form-control" name="clientId" id="inputClientId" placeholder="Enter client name" required>
+                            <datalist id="clientId">
+                            </datalist>
                         </div>
                     </div>
                 </form>
@@ -115,7 +115,7 @@
                     &nbsp;
                 </div>
                 <div class="product-file file">
-                    <input type="file" class="custom-file-input" id="productFile">
+                    <input type="file" class="custom-file-input" id="productFile" required>
                     <label class="custom-file-label" for="productFile" id="productFileName">Choose file</label>
                 </div>
                 </div>
@@ -129,9 +129,6 @@
     </div>
 </div>
 </div>
-
-
-
 
 <footer th:replace="snippets.html :: name_footer"></footer>
 
